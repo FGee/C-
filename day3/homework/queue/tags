@@ -1,0 +1,27 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Node_t	queue.h	/^} Node_t, *pNode_t;$/;"	t	typeref:struct:node
+Queue	queue.cc	/^Queue::Queue()$/;"	f	class:Queue
+Queue	queue.h	/^class Queue $/;"	c
+__QUEUE_H__	queue.h	2;"	d
+_queueCapacity	queue.h	/^    int _queueCapacity;$/;"	m	class:Queue
+_queueHead	queue.h	/^    pNode_t _queueHead;$/;"	m	class:Queue
+_queueSize	queue.h	/^    int _queueSize;$/;"	m	class:Queue
+_queueTail	queue.h	/^    pNode_t _queueTail;$/;"	m	class:Queue
+back	queue.cc	/^int Queue::back() const $/;"	f	class:Queue
+empty	queue.cc	/^bool Queue::empty() const$/;"	f	class:Queue
+front	queue.cc	/^int Queue::front() const$/;"	f	class:Queue
+full	queue.cc	/^bool Queue::full() const$/;"	f	class:Queue
+key	queue.h	/^    int key;$/;"	m	struct:node
+main	test.cc	/^int main()$/;"	f
+node	queue.h	/^typedef struct node {$/;"	s
+pNext	queue.h	/^    struct node *pNext;$/;"	m	struct:node	typeref:struct:node::node
+pNode_t	queue.h	/^} Node_t, *pNode_t;$/;"	t	typeref:struct:node
+pPre	queue.h	/^    struct node *pPre;$/;"	m	struct:node	typeref:struct:node::node
+pop	queue.cc	/^void Queue::pop()$/;"	f	class:Queue
+push	queue.cc	/^void Queue::push(int ival)$/;"	f	class:Queue
+~Queue	queue.cc	/^Queue::~Queue()$/;"	f	class:Queue
