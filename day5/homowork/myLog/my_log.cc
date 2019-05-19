@@ -27,15 +27,3 @@ Mylog::~Mylog()
     Category::shutdown(); 
     cout << "~Mylog()" << endl;
 }
-
-const char* Mylog::getInfo(const char* msg)
-{
-    //char buf[100] = {0};
-    //sprintf(buf, "%s %d %s : %s", __FILE__, __LINE__, __func__, msg);
-    //string tempStr;
-    std::ostringstream oss;
-    oss << "file: " << __FILE__ << " line: " << __LINE__ << " func: " << __func__ << ": " << msg;
-    _tempStr = oss.str();
-
-    return _tempStr.c_str();
-}
