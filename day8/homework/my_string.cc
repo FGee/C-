@@ -1,5 +1,6 @@
 #include "my_string.h"
 
+#include <vector>
 #include <string.h>
 
 //using namespace wd;
@@ -28,7 +29,7 @@ String::~String()
 
 String & String::operator=(const String &rhs)
 {
-    if (_pstr != rhs._pstr) {
+    if (*this != rhs) {
         delete [] _pstr;
         _pstr = new char[strlen(rhs._pstr) + 1]();
         strcpy(_pstr, rhs._pstr);
@@ -170,13 +171,26 @@ std::ostream & operator<<(std::ostream &os, const String &s)
 
 std::istream & operator>>(std::istream &is, String &s)
 {
-    char tempStr[50] = { 0 };
-    is >> tempStr;
+    std::vector<char> buf;
+    buf.reserve(1024);
+
+    char ch;
+    while('\n' != (ch = is.get())) {
+        buf.push_back(ch);
+    }
+
     delete [] s._pstr;
-    s._pstr = new char[strlen(tempStr) + 1]();
-    strcpy(s._pstr, tempStr);
-    cout << "std::istream & operator>>(std::istream &is, String &s)" << endl;
+    s._pstr = new char[buf.size() + 1]();
+    strncpy(s._pstr, &buf[0], buf.size());
+
     return is;
+    //char tempStr[50] = { 0 };
+    //is >> tempStr;
+    //delete [] s._pstr;
+    //s._pstr = new char[strlen(tempStr) + 1]();
+    //strcpy(s._pstr, tempStr);
+    //cout << "std::istream & operator>>(std::istream &is, String &s)" << endl;
+    //return is;
 }
 
 String operator+(const String & lhs, const String &rhs)
