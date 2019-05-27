@@ -20,10 +20,10 @@ public:
     Dragon(int num, int strength, int remain)
         : Warrior(num, strength),
         _weapon(num % 3),
-        _morale((float)remain / strength) 
+        _morale((float)remain / (float)strength) 
     {}
     int weaponGet() { return _weapon; }
-    int moraleGet() { return _morale; }
+    float moraleGet() { return _morale; }
 private:
     int _weapon;
     float _morale;
