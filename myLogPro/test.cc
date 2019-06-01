@@ -12,6 +12,11 @@ int main()
 
     LogInfo("hello, world!");
 
+    const char* str = "world";
+    int a = 5;
+
+    LogDebug("hello %d %s", a, str);
+
     wd::Mylog::destory();
 
 
