@@ -43,6 +43,12 @@ public:
         }
     }
 
+    std::string showTime() 
+    {
+        char buf[10] = { 0 };
+        sprintf(buf, "%03ld:%02ld", _hour, _minute);
+        return buf;
+    }
 private:
     Time() : _hour(0), _minute(0) {}
     ~Time() {}
@@ -52,6 +58,8 @@ private:
     size_t _minute;
     static AutoRelease _auto;
 };
+
+//Time* Time::_pTime = nullptr;
 
 }
 

@@ -1,6 +1,7 @@
 #ifndef __TYPE_H__
 #define __TYPE_H__
 #include <iostream>
+#include <string>
 
 namespace warcraft
 {
@@ -8,9 +9,9 @@ namespace warcraft
 using size_t = std::size_t;
 
 enum Color_t {
-    NONE,
     RED,
-    BLUE
+    BLUE,
+    NONE
 };
 
 enum Warrior_t {
@@ -20,6 +21,10 @@ enum Warrior_t {
     LION,
     WORF
 };
+
+std::string enum2strWarrior(Warrior_t warrior);
+
+std::string enum2strColor(Color_t color);
 
 }
 

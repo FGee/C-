@@ -1,45 +1,56 @@
 #include "headquarter.h"
 
-void Headquarter::createWarrior()
+void Headquarter::createWarrior(size_t cityNum)
 {
     Warrior_t warrior = _createOrder[_nextWarriorId % 5];
-    _spWarriors->insert(make_pair(_nextWarriorId, 
-                                  newWarriorByType(warrior).get()));
+    if (_element < _initHp[warrior]) { return; } // 生命元不够，不生产
+    _spWarriors->push_back(newWarriorByType(warrior, cityNum).get());
+
+    _warriorView.warriorSet((*_spWarriors)[_nextWarriorId]);
+    _warriorView.born();
+
+    ++_nextWarriorId;
     ++_warriorsNums[warrior];
+    _element -= _initHp[warrior];
 }
 
-shared_ptr<Warrior> Headquarter::newWarriorByType(Warrior_t warrior)
+shared_ptr<Warrior> Headquarter::newWarriorByType(Warrior_t warrior, size_t cityNum)
 {
     switch (warrior) {
         case DRAGON:
-            return make_shared<Warrior>(new Dragon(
+            return shared_ptr<Warrior>((Warrior*)new Dragon(
                                                     _color, warrior, 
                                                     _nextWarriorId, 
                                                     _initHp[DRAGON], 
-                                                    _initAp[DRAGON]));
+                                                    _initAp[DRAGON], 
+                                                    cityNum));
         case NINJA:
-            return make_shared<Warrior>(new Ninja(
+            return shared_ptr<Warrior>((Warrior*)new Ninja(
                                                     _color, warrior, 
                                                     _nextWarriorId, 
                                                     _initHp[NINJA], 
-                                                    _initAp[NINJA]));
+                                                    _initAp[NINJA], 
+                                                    cityNum));
         case ICEMAN:
-            return make_shared<Warrior>(new Iceman(
+            return shared_ptr<Warrior>((Warrior*)new Iceman(
                                                     _color, warrior, 
                                                     _nextWarriorId, 
                                                     _initHp[ICEMAN], 
-                                                    _initAp[ICEMAN]));
+                                                    _initAp[ICEMAN], 
+                                                    cityNum));
         case LION:
-            return make_shared<Warrior>(new Lion(
+            return shared_ptr<Warrior>((Warrior*)new Lion(
                                                     _color, warrior, 
                                                     _nextWarriorId, 
                                                     _initHp[LION], 
-                                                    _initAp[LION]));
+                                                    _initAp[LION], 
+                                                    cityNum));
         case WORF:
-            return make_shared<Warrior>(new Wolf(
+            return shared_ptr<Warrior>((Warrior*)new Wolf(
                                                     _color, warrior, 
                                                     _nextWarriorId, 
                                                     _initHp[WORF], 
-                                                    _initAp[WORF]));
+                                                    _initAp[WORF],
+                                                    cityNum));
     }
 }
