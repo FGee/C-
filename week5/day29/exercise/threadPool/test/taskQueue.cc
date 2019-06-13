@@ -12,7 +12,7 @@ inline
 void TaskQueue::push(const ElemType& elem) 
 {
     {
-        MutexLockGuard autoMutex(_mutex);
+        //MutexLockGuard autoMutex(_mutex);
         while (full()) {
             _notFull.wait();
         }
@@ -25,9 +25,11 @@ ElemType TaskQueue::pop()
 {
     ElemType retElem;
 
-    MutexLockGuard autoMutex(_mutex);
+    //MutexLockGuard autoMutex(_mutex);
     while (!_exitFlag && empty()) {
+        cout << "11111111111" << endl;
         _notEmpty.wait();
+        cout << "22222222222" << endl;
     }
 
     if (!_exitFlag) {
@@ -37,6 +39,7 @@ ElemType TaskQueue::pop()
         return retElem;
     } else {
         return nullptr;
+        //return ElemType(); // 执行默认初始化的函数对象，执行后是一个nullptr
     }
 }
 

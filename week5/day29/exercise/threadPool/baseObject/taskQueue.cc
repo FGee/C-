@@ -37,6 +37,7 @@ ElemType TaskQueue::pop()
         return retElem;
     } else {
         return nullptr;
+        //return ElemType(); // 执行默认初始化的函数对象，执行后是一个nullptr
     }
 }
 
