@@ -14,24 +14,30 @@ namespace wd
 
 SocketIO::SocketIO(int a) : _acceptFd(a) {}
 
-void SocketIO::readN(char* buf, int size)
+int SocketIO::readN(char* buf, int size)
 {
     int total = 0;
-    while (total == size) {
+    while (total != size) {
         int ret = read(_acceptFd, buf + total, size - total);
+        if (-1 == ret && errno == EINTR) { continue; }
         if (-1 == ret) { ERROR_EXIT("read"); }
         total += ret;
+        if (0 == ret) { return total; }
     }
+    return total;
 }
 
-void SocketIO::writeN(const char* buf, int size)
+int SocketIO::writeN(const char* buf, int size)
 {
     int total = 0;
     while (total != size) {
         int ret = write(_acceptFd, buf + total, size - total);
+        if (-1 == ret && errno == EINTR) { continue; }
         if (-1 == ret) { ERROR_EXIT("write"); }
         total += ret;
+        if (0 == ret) { return total; }
     }
+    return total;
 }
 
 int SocketIO::readLine(char* buf, int maxlen)
@@ -48,7 +54,6 @@ int SocketIO::readLine(char* buf, int maxlen)
                 readN(p, i + 1);
                 p += (i + 1);
                 total += (i + 1);
-                left -= (i + 1);
                 *p = '\0';
                 return total;
             }

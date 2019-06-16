@@ -38,6 +38,10 @@ int main(int argc, char ** argv)
     ret = read(STDERR_FILENO, buf, sizeof(buf));
     
     ret = write(clientFd, buf, strlen(buf));
+    
+    memset(buf, 0, sizeof(buf));
+    ret = read(clientFd, buf, sizeof(buf));
+    printf("%s\n", buf);
 
     while(1);
 

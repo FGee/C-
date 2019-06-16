@@ -53,4 +53,6 @@ int Acceptor::accept()
     return acceptFd;
 }
 
+int Acceptor::listenFdGet() const { return _listenFd.fdGet(); }
+
 }

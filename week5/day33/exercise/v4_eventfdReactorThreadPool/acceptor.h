@@ -14,6 +14,7 @@ public:
     Acceptor(const string&, const unsigned short&);
     void ready();
     int accept();
+    int listenFdGet() const;
 private:
     void setReuseAddr(bool);
     void setReusePort(bool);
