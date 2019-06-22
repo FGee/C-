@@ -10,8 +10,8 @@ namespace wd
 
 Configuration::AutoRelease Configuration::_auto;
 
-//Configuration* Configuration::_pConfiguration = nullptr;
-Configuration* Configuration::_pConfiguration = Configuration::getInstance();
+Configuration* Configuration::_pConfiguration = nullptr;
+//Configuration* Configuration::_pConfiguration = Configuration::getInstance();
 
 void Configuration::loadConfigFile(const char* fileName)
 {

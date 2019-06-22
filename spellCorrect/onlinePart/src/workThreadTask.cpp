@@ -39,7 +39,6 @@ void WorkThreadTask::process()
             matchWrdIntoResult(queryWrd);    
             jsonStr = obtainResultJson(RESULT_NUM);
             cache.addIntoCache(queryWrd, jsonStr);
-            jsonStr = obtainResultJson(RESULT_NUM);
         }
     }
 

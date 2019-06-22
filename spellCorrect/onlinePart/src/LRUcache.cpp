@@ -49,12 +49,11 @@ void LRUCache::saveCache()
     ofstream ofs;
     ofs.open(cachePath, ios::out | ios::trunc);
     if (ofs.fail()) { ERROR_EXIT("open cache store"); }
-
     
-    //for (auto & elem : _cacheList) {
-    //    ofs << elem._queryWrd << " " << elem._jsonResult << endl;
-    //    cout << elem._queryWrd << " " << elem._jsonResult << endl;
-    //}
+    for (auto & elem : _cacheList) {
+        ofs << elem._queryWrd << " " << elem._jsonResult << endl;
+        cout << elem._queryWrd << " " << elem._jsonResult << endl;
+    }
     ofs.close();
 }
 
