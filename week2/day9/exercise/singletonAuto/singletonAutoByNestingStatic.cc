@@ -12,7 +12,10 @@ class Singleton {
         }
         ~AutoRelase()
         {
-            destroy();
+            //destroy();
+            if (nullptr != _pSingleton) {
+                delete _pSingleton;
+            }
             cout << "~AutoRelase()" << endl;
         }
     private:
@@ -25,10 +28,10 @@ public:
         }
         return _pSingleton;
     }
-    static void destroy()
-    {
-        delete _pSingleton;
-    }
+    //static void destroy()
+    //{
+    //    delete _pSingleton;
+    //}
 private:
     Singleton()
     {
@@ -45,15 +48,14 @@ private:
 
 Singleton::AutoRelase Singleton::_autoRelase;
 
-//Singleton* Singleton::_pSingleton = nullptr; //lazy man modle
+Singleton* Singleton::_pSingleton = nullptr; //lazy man modle
 
-Singleton* Singleton::_pSingleton = Singleton::getInstance(); //full man modle to avoid the mulity thread 
+//Singleton* Singleton::_pSingleton = Singleton::getInstance(); //full man modle to avoid the mulity thread 
 
-static int a;
+//static int a;
 
 int main()
 {
-    ::a = 9;
 
     Singleton::getInstance();
 
